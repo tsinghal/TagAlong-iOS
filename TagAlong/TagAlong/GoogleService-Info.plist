@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>432699021126-hjj4ir48gphvrgvalmfkf22s84oqfjcs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.432699021126-hjj4ir48gphvrgvalmfkf22s84oqfjcs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0t9rblp7DtuefNhjFHi0q0INcowR-Hyk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>432699021126</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>usc.TagAlong</string>
+	<key>PROJECT_ID</key>
+	<string>tagalong-25101</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tagalong-25101.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:432699021126:ios:e3b10572ac41d5c0</string>
+	<key>DATABASE_URL</key>
+	<string>https://tagalong-25101.firebaseio.com</string>
+</dict>
+</plist>
