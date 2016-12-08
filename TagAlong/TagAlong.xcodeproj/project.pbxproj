@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26A94D4E5A5DE6A33548953D /* libPods-TagAlongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4587B6B530B3A40A286D57BE /* libPods-TagAlongTests.a */; };
 		631D9EB450061CE2E0FFF118 /* libPods-TagAlongUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CE0D5990E1625654F7F9FBC /* libPods-TagAlongUITests.a */; };
+		781C4CCE1DF94A1C0037AE20 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C4CCD1DF94A1C0037AE20 /* HomeController.m */; };
 		78578B191DF666C400C695C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B181DF666C400C695C0 /* main.m */; };
 		78578B1C1DF666C400C695C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B1B1DF666C400C695C0 /* AppDelegate.m */; };
 		78578B1F1DF666C400C695C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B1E1DF666C400C695C0 /* ViewController.m */; };
@@ -21,6 +22,7 @@
 		78578B501DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */; };
 		78578B511DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */; };
 		78578B521DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */; };
+		78578B581DF900AF00C695C0 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B571DF900AF00C695C0 /* SignUpController.m */; };
 		E1B5844242B05CD58B251FAC /* libPods-TagAlong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7F2C54E06F2F505ED88FD2 /* libPods-TagAlong.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		4587B6B530B3A40A286D57BE /* libPods-TagAlongTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TagAlongTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE0D5990E1625654F7F9FBC /* libPods-TagAlongUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TagAlongUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		717CB203AF5C2B6BF11FF4ED /* Pods-TagAlongUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongUITests/Pods-TagAlongUITests.release.xcconfig"; sourceTree = "<group>"; };
+		781C4CCC1DF94A1C0037AE20 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
+		781C4CCD1DF94A1C0037AE20 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
 		78578B141DF666C400C695C0 /* TagAlong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagAlong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78578B181DF666C400C695C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78578B1A1DF666C400C695C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,6 +67,9 @@
 		78578B3E1DF666C500C695C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78578B4A1DF7683900C695C0 /* pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pacifico.ttf; sourceTree = "<group>"; };
 		78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78578B561DF900AF00C695C0 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
+		78578B571DF900AF00C695C0 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
+		78578B5A1DF92D1300C695C0 /* TagAlong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TagAlong.entitlements; sourceTree = "<group>"; };
 		9390803F21B827F7A3B50ACC /* Pods-TagAlong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlong/Pods-TagAlong.debug.xcconfig"; sourceTree = "<group>"; };
 		A776F253196C7994B059FEED /* Pods-TagAlongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.release.xcconfig"; sourceTree = "<group>"; };
 		D26E4F16A3CE26FA71AF4DC6 /* Pods-TagAlongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +141,7 @@
 		78578B161DF666C400C695C0 /* TagAlong */ = {
 			isa = PBXGroup;
 			children = (
+				78578B5A1DF92D1300C695C0 /* TagAlong.entitlements */,
 				78578B1A1DF666C400C695C0 /* AppDelegate.h */,
 				78578B1B1DF666C400C695C0 /* AppDelegate.m */,
 				78578B4E1DF771B900C695C0 /* Model */,
@@ -188,6 +196,10 @@
 			children = (
 				78578B1D1DF666C400C695C0 /* ViewController.h */,
 				78578B1E1DF666C400C695C0 /* ViewController.m */,
+				78578B561DF900AF00C695C0 /* SignUpController.h */,
+				78578B571DF900AF00C695C0 /* SignUpController.m */,
+				781C4CCC1DF94A1C0037AE20 /* HomeController.h */,
+				781C4CCD1DF94A1C0037AE20 /* HomeController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -288,7 +300,13 @@
 				TargetAttributes = {
 					78578B131DF666C400C695C0 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = P8CFL6JA5N;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					78578B2C1DF666C500C695C0 = {
 						CreatedOnToolsVersion = 8.1;
@@ -499,6 +517,8 @@
 				78578B1F1DF666C400C695C0 /* ViewController.m in Sources */,
 				78578B1C1DF666C400C695C0 /* AppDelegate.m in Sources */,
 				78578B191DF666C400C695C0 /* main.m in Sources */,
+				781C4CCE1DF94A1C0037AE20 /* HomeController.m in Sources */,
+				78578B581DF900AF00C695C0 /* SignUpController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +666,8 @@
 			baseConfigurationReference = 9390803F21B827F7A3B50ACC /* Pods-TagAlong.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TagAlong/TagAlong.entitlements;
+				DEVELOPMENT_TEAM = P8CFL6JA5N;
 				INFOPLIST_FILE = TagAlong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.TagAlong;
@@ -658,6 +680,8 @@
 			baseConfigurationReference = D8B8B3889D55D69D499FA1F1 /* Pods-TagAlong.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TagAlong/TagAlong.entitlements;
+				DEVELOPMENT_TEAM = P8CFL6JA5N;
 				INFOPLIST_FILE = TagAlong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = usc.TagAlong;
@@ -734,6 +758,7 @@
 				78578B431DF666C500C695C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78578B441DF666C500C695C0 /* Build configuration list for PBXNativeTarget "TagAlongTests" */ = {
 			isa = XCConfigurationList;
@@ -742,6 +767,7 @@
 				78578B461DF666C500C695C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78578B471DF666C500C695C0 /* Build configuration list for PBXNativeTarget "TagAlongUITests" */ = {
 			isa = XCConfigurationList;
@@ -750,6 +776,7 @@
 				78578B491DF666C500C695C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
