@@ -7,6 +7,7 @@
 //
 
 #import "HomeController.h"
+@import FirebaseAuth;
 
 @interface HomeController ()
 
@@ -19,12 +20,29 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)signOut {
+    FIRUser *user = [FIRAuth auth].currentUser;
+    NSString *name = user.displayName;
+    if (user) {
+        NSLog(@"Your name is %@", name);
+    }
+    
+    FIRAuth *firebaseAuth = [FIRAuth auth];
+    NSError *signOutError;
+    BOOL status = [firebaseAuth signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+        return;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 #pragma mark - Navigation
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  
+     [self signOut];
      [self dismissViewControllerAnimated:YES completion:nil];
  }
 

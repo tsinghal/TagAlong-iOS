@@ -121,12 +121,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"main"]) {
         if([self isWorking] == YES){
+            _usernameField.text = @"";
+            _passwordField.text = @"";
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else{
-        
-    //SignUpController *sc = (SignUpController *)segue.destinationViewController;
-    [self dismissViewControllerAnimated:YES completion:nil];
+        _usernameField.text = @"";
+        _passwordField.text = @"";
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
