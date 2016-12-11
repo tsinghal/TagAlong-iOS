@@ -138,6 +138,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
+    UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     
     self.imageView.image = originalImage;
@@ -145,6 +146,10 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) imagePickerControllerDidCancel: (UIImagePickerController *)
+picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
 
 
 

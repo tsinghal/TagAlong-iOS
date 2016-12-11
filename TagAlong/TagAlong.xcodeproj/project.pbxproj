@@ -10,6 +10,7 @@
 		26A94D4E5A5DE6A33548953D /* libPods-TagAlongTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4587B6B530B3A40A286D57BE /* libPods-TagAlongTests.a */; };
 		631D9EB450061CE2E0FFF118 /* libPods-TagAlongUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CE0D5990E1625654F7F9FBC /* libPods-TagAlongUITests.a */; };
 		781C4CCE1DF94A1C0037AE20 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781C4CCD1DF94A1C0037AE20 /* HomeController.m */; };
+		782610E51DFA4E73005F7314 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 782610E41DFA4E73005F7314 /* FiltersViewController.m */; };
 		78578B191DF666C400C695C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B181DF666C400C695C0 /* main.m */; };
 		78578B1C1DF666C400C695C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B1B1DF666C400C695C0 /* AppDelegate.m */; };
 		78578B1F1DF666C400C695C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B1E1DF666C400C695C0 /* ViewController.m */; };
@@ -23,6 +24,8 @@
 		78578B511DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */; };
 		78578B521DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78578B4F1DF8A3DC00C695C0 /* GoogleService-Info.plist */; };
 		78578B581DF900AF00C695C0 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B571DF900AF00C695C0 /* SignUpController.m */; };
+		7882475F1DFCF89600975A61 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7882475D1DFCF89600975A61 /* CustomTableViewCell.m */; };
+		788247601DFCF89600975A61 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */; };
 		E1B5844242B05CD58B251FAC /* libPods-TagAlong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7F2C54E06F2F505ED88FD2 /* libPods-TagAlong.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,8 @@
 		717CB203AF5C2B6BF11FF4ED /* Pods-TagAlongUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongUITests/Pods-TagAlongUITests.release.xcconfig"; sourceTree = "<group>"; };
 		781C4CCC1DF94A1C0037AE20 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
 		781C4CCD1DF94A1C0037AE20 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
+		782610E31DFA4E73005F7314 /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
+		782610E41DFA4E73005F7314 /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
 		78578B141DF666C400C695C0 /* TagAlong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagAlong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78578B181DF666C400C695C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78578B1A1DF666C400C695C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,6 +75,9 @@
 		78578B561DF900AF00C695C0 /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpController.h; sourceTree = "<group>"; };
 		78578B571DF900AF00C695C0 /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpController.m; sourceTree = "<group>"; };
 		78578B5A1DF92D1300C695C0 /* TagAlong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TagAlong.entitlements; sourceTree = "<group>"; };
+		7882475C1DFCF89600975A61 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		7882475D1DFCF89600975A61 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		9390803F21B827F7A3B50ACC /* Pods-TagAlong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlong/Pods-TagAlong.debug.xcconfig"; sourceTree = "<group>"; };
 		A776F253196C7994B059FEED /* Pods-TagAlongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.release.xcconfig"; sourceTree = "<group>"; };
 		D26E4F16A3CE26FA71AF4DC6 /* Pods-TagAlongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +206,9 @@
 				78578B1E1DF666C400C695C0 /* ViewController.m */,
 				78578B561DF900AF00C695C0 /* SignUpController.h */,
 				78578B571DF900AF00C695C0 /* SignUpController.m */,
+				782610E31DFA4E73005F7314 /* FiltersViewController.h */,
+				782610E41DFA4E73005F7314 /* FiltersViewController.m */,
+				7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */,
 				781C4CCC1DF94A1C0037AE20 /* HomeController.h */,
 				781C4CCD1DF94A1C0037AE20 /* HomeController.m */,
 			);
@@ -207,6 +218,8 @@
 		78578B4E1DF771B900C695C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7882475C1DFCF89600975A61 /* CustomTableViewCell.h */,
+				7882475D1DFCF89600975A61 /* CustomTableViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -347,6 +360,7 @@
 			files = (
 				78578B271DF666C400C695C0 /* LaunchScreen.storyboard in Resources */,
 				78578B241DF666C400C695C0 /* Assets.xcassets in Resources */,
+				788247601DFCF89600975A61 /* CustomTableViewCell.xib in Resources */,
 				78578B501DF8A3DC00C695C0 /* GoogleService-Info.plist in Resources */,
 				78578B4B1DF7683900C695C0 /* pacifico.ttf in Resources */,
 				78578B221DF666C400C695C0 /* Main.storyboard in Resources */,
@@ -514,6 +528,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				782610E51DFA4E73005F7314 /* FiltersViewController.m in Sources */,
+				7882475F1DFCF89600975A61 /* CustomTableViewCell.m in Sources */,
 				78578B1F1DF666C400C695C0 /* ViewController.m in Sources */,
 				78578B1C1DF666C400C695C0 /* AppDelegate.m in Sources */,
 				78578B191DF666C400C695C0 /* main.m in Sources */,
@@ -591,6 +607,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -638,6 +655,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
