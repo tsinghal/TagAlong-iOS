@@ -10,10 +10,17 @@
 #import "FiltersViewController.h"
 #import "CustomTableViewCell.h"
 @import FirebaseAuth;
+@import FirebaseDatabase;
 
-@interface HomeController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeController () <UITableViewDelegate, UITableViewDataSource> {
+    FIRDatabaseHandle _refHandle;
+}
+
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *users;
 @end
 
 @implementation HomeController
@@ -23,6 +30,10 @@
 
     //register table cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CustomTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([CustomTableViewCell class])];
+ 
+    _users = [[NSMutableArray alloc] init];
+    
+    [self configureDatabase];
 
 }
 
@@ -36,20 +47,48 @@
     return 10;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Create a cell
+- (void)dealloc {
+    [[_ref child:@"users"] removeObserverWithHandle:_refHandle];
+}
 
+
+- (void)configureDatabase {
+    self.ref = [[FIRDatabase database] reference];
+    // Listen for new messages in the Firebase database
+    _refHandle = [[_ref child:@"users"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+        [_users addObject:snapshot];
+        [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_users.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
+    }];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    // Dequeue cell
+    
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CustomTableViewCell class]) forIndexPath:indexPath];
     
     
-    //Flashcard *card = [self.model flashcardAtIndex:indexPath.row];
-    //user here
-    
-    //Modify a cell
+    // Unpack message from Firebase DataSnapshot
+    FIRDataSnapshot *messageSnapshot = _users[indexPath.row];
+    NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
+    NSString *name = message[@"name"];
+    NSString *text = message[@"description"];
+    cell.cellName.text = [NSString stringWithFormat:@"%@", name];
+    cell.cellDescription.text = [NSString stringWithFormat:@"%@",text];
+    //cell.cellImage.image = [UIImage imageNamed: @"ic_account_circle"];
+    /*NSString *photoURL = message[MessageFieldsphotoURL];
+    if (photoURL) {
+        NSURL *URL = [NSURL URLWithString:photoURL];
+        if (URL) {
+            NSData *data = [NSData dataWithContentsOfURL:URL];
+            if (data) {
+                cell.imageView.image = [UIImage imageWithData:data];
+            }
+        }
+    }*/
     
     return cell;
 }
-
 
 
 - (IBAction)postPressed:(id)sender {
