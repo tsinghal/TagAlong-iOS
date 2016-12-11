@@ -77,27 +77,20 @@
     return nil;
     
 }
-
-/*
-- (IBAction)savePressed:(id)sender {
-    NSUInteger selectedFirstNameIndex = [_typePicker selectedRowInComponent:0];
-    NSUInteger selectedLastNameIndex = [_timePicker selectedRowInComponent:0];
+- (IBAction)backPressed:(id)sender {
     
-    NSString *firstName = _types[selectedFirstNameIndex];
-    NSString *lastName = _times[selectedLastNameIndex];
+    NSUInteger selectedtypeIndex = [_typePicker selectedRowInComponent:0];
+    NSUInteger selectedtimeIndex = [_timePicker selectedRowInComponent:0];
+    NSUInteger selectedlocationIndex = [_locationPicker selectedRowInComponent:0];
     
-    NSLog(@"%@ %@", firstName, lastName);
-}*/
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSString *type = _types[selectedtypeIndex];
+    NSString *time = _times[selectedtimeIndex];
+    NSString *location = _locations[selectedlocationIndex];
+    
+    if (self.completionHandler){
+        self.completionHandler(type, time, location);
+    }
 }
-*/
+
 
 @end

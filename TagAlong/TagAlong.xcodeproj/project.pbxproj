@@ -26,6 +26,7 @@
 		78578B581DF900AF00C695C0 /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78578B571DF900AF00C695C0 /* SignUpController.m */; };
 		7882475F1DFCF89600975A61 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7882475D1DFCF89600975A61 /* CustomTableViewCell.m */; };
 		788247601DFCF89600975A61 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */; };
+		78DB41221DFD656C00E0FD15 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DB41211DFD656C00E0FD15 /* User.m */; };
 		E1B5844242B05CD58B251FAC /* libPods-TagAlong.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7F2C54E06F2F505ED88FD2 /* libPods-TagAlong.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,8 @@
 		7882475C1DFCF89600975A61 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		7882475D1DFCF89600975A61 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		78DB41201DFD656C00E0FD15 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		78DB41211DFD656C00E0FD15 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9390803F21B827F7A3B50ACC /* Pods-TagAlong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlong.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlong/Pods-TagAlong.debug.xcconfig"; sourceTree = "<group>"; };
 		A776F253196C7994B059FEED /* Pods-TagAlongTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.release.xcconfig"; sourceTree = "<group>"; };
 		D26E4F16A3CE26FA71AF4DC6 /* Pods-TagAlongTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagAlongTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagAlongTests/Pods-TagAlongTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,13 +205,15 @@
 		78578B4D1DF771B100C695C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7882475C1DFCF89600975A61 /* CustomTableViewCell.h */,
+				7882475D1DFCF89600975A61 /* CustomTableViewCell.m */,
+				7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */,
 				78578B1D1DF666C400C695C0 /* ViewController.h */,
 				78578B1E1DF666C400C695C0 /* ViewController.m */,
 				78578B561DF900AF00C695C0 /* SignUpController.h */,
 				78578B571DF900AF00C695C0 /* SignUpController.m */,
 				782610E31DFA4E73005F7314 /* FiltersViewController.h */,
 				782610E41DFA4E73005F7314 /* FiltersViewController.m */,
-				7882475E1DFCF89600975A61 /* CustomTableViewCell.xib */,
 				781C4CCC1DF94A1C0037AE20 /* HomeController.h */,
 				781C4CCD1DF94A1C0037AE20 /* HomeController.m */,
 			);
@@ -218,8 +223,8 @@
 		78578B4E1DF771B900C695C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7882475C1DFCF89600975A61 /* CustomTableViewCell.h */,
-				7882475D1DFCF89600975A61 /* CustomTableViewCell.m */,
+				78DB41201DFD656C00E0FD15 /* User.h */,
+				78DB41211DFD656C00E0FD15 /* User.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DB41221DFD656C00E0FD15 /* User.m in Sources */,
 				782610E51DFA4E73005F7314 /* FiltersViewController.m in Sources */,
 				7882475F1DFCF89600975A61 /* CustomTableViewCell.m in Sources */,
 				78578B1F1DF666C400C695C0 /* ViewController.m in Sources */,

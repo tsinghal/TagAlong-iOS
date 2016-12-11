@@ -12,15 +12,15 @@
 @import FirebaseAuth;
 @import FirebaseDatabase;
 
-@interface HomeController () <UITableViewDelegate, UITableViewDataSource> {
-    FIRDatabaseHandle _refHandle;
-}
+@interface HomeController () <UITableViewDelegate, UITableViewDataSource>
 
-
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) FIRDatabaseReference *ref;
-@property (strong, nonatomic) NSMutableArray<FIRDataSnapshot *> *users;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (nonatomic, assign) BOOL seg;
+@property(nonatomic,copy) NSString *usertime;
+@property(nonatomic,copy) NSString *usertype;
+@property(nonatomic,copy) NSString *userlocation;
 @end
 
 @implementation HomeController
@@ -31,10 +31,10 @@
     //register table cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CustomTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([CustomTableViewCell class])];
  
-    _users = [[NSMutableArray alloc] init];
     
-    [self configureDatabase];
-
+    self.ref = [[FIRDatabase database] reference];
+    [self setSeg:NO];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -47,20 +47,6 @@
     return 10;
 }
 
-- (void)dealloc {
-    [[_ref child:@"users"] removeObserverWithHandle:_refHandle];
-}
-
-
-- (void)configureDatabase {
-    self.ref = [[FIRDatabase database] reference];
-    // Listen for new messages in the Firebase database
-    _refHandle = [[_ref child:@"users"] observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
-        [_users addObject:snapshot];
-        [_tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_users.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationAutomatic];
-    }];
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     // Dequeue cell
@@ -68,7 +54,7 @@
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CustomTableViewCell class]) forIndexPath:indexPath];
     
     
-    // Unpack message from Firebase DataSnapshot
+    /* Unpack message from Firebase DataSnapshot
     FIRDataSnapshot *messageSnapshot = _users[indexPath.row];
     NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
     NSString *name = message[@"name"];
@@ -76,7 +62,7 @@
     cell.cellName.text = [NSString stringWithFormat:@"%@", name];
     cell.cellDescription.text = [NSString stringWithFormat:@"%@",text];
     //cell.cellImage.image = [UIImage imageNamed: @"ic_account_circle"];
-    /*NSString *photoURL = message[MessageFieldsphotoURL];
+    NSString *photoURL = message[MessageFieldsphotoURL];
     if (photoURL) {
         NSURL *URL = [NSURL URLWithString:photoURL];
         if (URL) {
@@ -92,6 +78,27 @@
 
 
 - (IBAction)postPressed:(id)sender {
+  
+    if([self seg] == NO){
+        UIAlertController *prompt =
+        [UIAlertController alertControllerWithTitle:nil
+                                            message:@"Please select filters"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:@"OK"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * _Nonnull action) {
+                                       
+                                   }];
+        [prompt addAction:okAction];
+        [self presentViewController:prompt animated:YES completion:nil];
+        return;
+    }
+    
+    //current user
+    FIRUser *user = [FIRAuth auth].currentUser;
+    
+   
     UIAlertController *prompt =
     [UIAlertController alertControllerWithTitle:nil
                                         message:@"Give a brief description of yours"
@@ -107,19 +114,26 @@
                                    {
                                        return;
                                    }
+                                   [[[[_ref child:@"users"] child:user.uid] child:@"description"] setValue:userInput];
                                    
                                }];
     [prompt addTextFieldWithConfigurationHandler:nil];
     [prompt addAction:okAction];
     [self presentViewController:prompt animated:YES completion:nil];
 
+    //save info in database
+    [[[[_ref child:@"users"] child:user.uid] child:@"name"] setValue:user.displayName];
+    [[[[_ref child:@"users"] child:user.uid] child:@"type"] setValue:_usertype];
+    [[[[_ref child:@"users"] child:user.uid] child:@"time"] setValue:_usertime];
+    [[[[_ref child:@"users"] child:user.uid] child:@"location"] setValue:_userlocation];
+    
 }
 
+//signs out user from firebase
 - (void)signOut {
     FIRUser *user = [FIRAuth auth].currentUser;
-    NSString *name = user.displayName;
     if (user) {
-        NSLog(@"Your name is %@", name);
+        NSLog(@"Signed Out");
     }
     
     FIRAuth *firebaseAuth = [FIRAuth auth];
@@ -140,6 +154,24 @@
      if ([segue.identifier isEqualToString:@"logout"]) {
        [self signOut];
      }else if ([segue.identifier isEqualToString:@"filter"]){
+         
+         [self setSeg:YES];
+         [self.postButton setEnabled:true];
+         FiltersViewController *fc = (FiltersViewController *)segue.destinationViewController;
+         
+         fc.completionHandler = ^(NSString *type, NSString *time, NSString *location){
+             
+             
+             if (type != nil && time != nil && location != nil){
+                 
+                 _usertime = time;
+                 _usertype = type;
+                 _userlocation = location;
+                 
+             }
+             
+             [self dismissViewControllerAnimated:YES completion:nil];
+         };
         
      }else if ([segue.identifier isEqualToString:@"notification"]){
          

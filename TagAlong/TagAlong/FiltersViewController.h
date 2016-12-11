@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^CompletionHandler)(NSString *type, NSString *time, NSString *location);
+
 @interface FiltersViewController : UIViewController
+
+@property (copy, nonatomic) CompletionHandler completionHandler;
 
 @end
