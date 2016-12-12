@@ -58,10 +58,12 @@
     
     
 }
+
 - (void)configureStorage {
     NSString *storageUrl = [FIRApp defaultApp].options.storageBucket;
     self.storageRef = [[FIRStorage storage] referenceForURL:[NSString stringWithFormat:@"gs://%@", storageUrl]];
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

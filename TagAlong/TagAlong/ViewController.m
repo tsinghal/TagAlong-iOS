@@ -32,7 +32,6 @@
     [self setWorking:NO];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -66,7 +65,7 @@
                                  return;
                              }else{
                                 [self setWorking:YES];
-                                 
+                                [self performSegueWithIdentifier:@"main" sender:self];
                              }
                              printf("success");
                          }];
@@ -104,6 +103,10 @@
    
     
 }
+- (IBAction)signUpPressed:(id)sender {
+    [self performSegueWithIdentifier:@"signUp" sender:self];
+}
+
 
 - (void)showDialog:(NSString *)show {
     UIAlertController *prompt =
@@ -119,7 +122,7 @@
     [prompt addAction:okAction];
     [self presentViewController:prompt animated:YES completion:nil];
 }
-
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"main"]) {
         if([self isWorking] == YES){
@@ -127,12 +130,14 @@
             _passwordField.text = @"";
             [self setWorking:false];
             [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+           
         }
     }else{
         _usernameField.text = @"";
         _passwordField.text = @"";
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-}
+}*/
 
 @end

@@ -82,7 +82,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K8U-fG-DUg"/>
-                                    <segue destination="Vtn-Sb-zLc" kind="presentation" identifier="main" id="1Uv-L4-XEg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jj-Gy-Tt9" userLabel="signUpButton">
@@ -94,7 +93,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="w5L-BV-6Ip" kind="presentation" identifier="signUp" id="OXg-Gk-f5D"/>
+                                    <action selector="signUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RxR-Ke-PGF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYx-nQ-5RK" userLabel="resetButton">
@@ -124,6 +123,8 @@
                         <outlet property="resetButton" destination="MYx-nQ-5RK" id="dBP-WG-suE"/>
                         <outlet property="signUpButton" destination="8jj-Gy-Tt9" id="rfo-9Y-N0f"/>
                         <outlet property="usernameField" destination="Nqy-E7-k4j" id="WzU-Ht-Xna"/>
+                        <segue destination="Vtn-Sb-zLc" kind="presentation" identifier="main" id="egp-16-qYF"/>
+                        <segue destination="w5L-BV-6Ip" kind="presentation" identifier="signUp" id="DU5-ry-mES"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -407,6 +408,6 @@
         <image name="person" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g8l-wE-Nzd"/>
+        <segue reference="PxB-Em-m6D"/>
     </inferredMetricsTieBreakers>
 </document>
