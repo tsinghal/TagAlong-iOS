@@ -113,8 +113,9 @@
                     } else {
                         // image returned and resized
                        UIImage *tempImage =[UIImage imageWithData:data];
-                        CGSize size=CGSizeMake(75, 75);
+                        CGSize size=CGSizeMake(80, 80);
                         UIImage *temp = [self imageWithImage:tempImage scaledToSize:size];
+                        [cell.imageView setImage:temp];
                         cell.imageView.image =  temp;
                         
                     }
@@ -126,7 +127,8 @@
     } withCancelBlock:^(NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
-    
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
     return cell;
 }
 
