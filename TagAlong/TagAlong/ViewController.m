@@ -49,23 +49,27 @@
     NSString *password = _passwordField.text;
     
     BOOL check;
-    check = [self checkEmail];
+    check = [self checkEmail];  //check email is fine
     if(!check)
         return;
-    check = [self checkPassword];
+    check = [self checkPassword];   //check password not empty
     if(!check)
         return;
     
     [[FIRAuth auth] signInWithEmail:email
                            password:password
                          completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                             if (error) {
+                             if (error) {               //failed
+                                 
                                  [self showDialog:@"Login Failed"];
                                  [self setWorking:NO];
+                                 
                                  return;
-                             }else{
-                                [self setWorking:YES];
-                                [self performSegueWithIdentifier:@"main" sender:self];
+                             }else{                     //signed in
+                                
+                                 [self setWorking:YES];
+                                 [self performSegueWithIdentifier:@"main" sender:self];
+                             
                              }
                              printf("success");
                          }];
@@ -107,7 +111,7 @@
     [self performSegueWithIdentifier:@"signUp" sender:self];
 }
 
-
+//shows a pop up dialog
 - (void)showDialog:(NSString *)show {
     UIAlertController *prompt =
     [UIAlertController alertControllerWithTitle:nil

@@ -59,6 +59,7 @@
     
 }
 
+//storage for image download from firebase
 - (void)configureStorage {
     NSString *storageUrl = [FIRApp defaultApp].options.storageBucket;
     self.storageRef = [[FIRStorage storage] referenceForURL:[NSString stringWithFormat:@"gs://%@", storageUrl]];
@@ -107,12 +108,15 @@
             cell.cellDescription.text = tempDescription;
             
             //downloading image from Firebase
+                
             FIRStorageReference *imageRef = [self.storageRef child:key];
             [imageRef dataWithMaxSize:2.8 * 1024 * 1024 completion:^(NSData *data, NSError *error){
                     if (error != nil) {
                         // Uh-oh, an error occurred!
                         [self showDialog:@"Image size was too big"];
+                    
                     } else {
+                    
                         // image returned and resized
                        UIImage *tempImage =[UIImage imageWithData:data];
                         CGSize size=CGSizeMake(80, 80);
@@ -175,6 +179,7 @@
                                       @"Preferences"];
                 NSString *msg = [NSString stringWithFormat:@"Type: %@\r\n Time: %@\r\n Location: %@",tempType, tempTime, tempLocation];
                 
+                //alert box for more info
                 UIAlertController *prompt =
                 [UIAlertController alertControllerWithTitle: complete
                                                     message: msg
@@ -197,6 +202,7 @@
     }];
 
 }
+//popup dialogs
 - (void)showDialog:(NSString *)show {
     UIAlertController *prompt =
     [UIAlertController alertControllerWithTitle:nil

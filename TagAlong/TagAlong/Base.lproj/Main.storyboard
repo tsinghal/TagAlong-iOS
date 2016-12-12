@@ -296,7 +296,7 @@
                                     <navigationItem title="Sign Up" id="1nW-Gh-dUu">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="k1G-qs-Fgw" userLabel="cancelButton">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="cancel" id="7fo-Wy-aBv"/>
+                                                <action selector="cancelPressed:" destination="w5L-BV-6Ip" id="9bC-W5-RW9"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -363,7 +363,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createPressed:" destination="w5L-BV-6Ip" eventType="touchUpInside" id="CZ4-zk-zJ0"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="create" id="g8l-wE-Nzd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPm-EU-hvC" userLabel="selectButton">
@@ -394,6 +393,7 @@
                         <outlet property="nameField" destination="bg5-HS-SeZ" id="Jbd-MK-Udu"/>
                         <outlet property="passwordField" destination="DIU-tm-fDq" id="2C7-R6-Mwi"/>
                         <outlet property="selectButton" destination="tPm-EU-hvC" id="sLH-D7-MUq"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="login" id="V5V-Le-vx2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekh-Rs-93g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -408,6 +408,6 @@
         <image name="person" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PxB-Em-m6D"/>
+        <segue reference="V5V-Le-vx2"/>
     </inferredMetricsTieBreakers>
 </document>

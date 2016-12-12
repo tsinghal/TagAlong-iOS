@@ -36,7 +36,7 @@
     [self configureStorage];
 }
 
-
+//configure firebase storage for images
 - (void)configureStorage {
     NSString *storageUrl = [FIRApp defaultApp].options.storageBucket;
     self.storageRef = [[FIRStorage storage] referenceForURL:[NSString stringWithFormat:@"gs://%@", storageUrl]];
@@ -52,13 +52,13 @@
     
     
     BOOL check;
-    check = [self checkName];
+    check = [self checkName];       //check name
     if(!check)
         return;
-    check = [self checkEmail];
+    check = [self checkEmail];      // check user email
     if(!check)
         return;
-    check = [self checkPassword];
+    check = [self checkPassword];      //check password not empty
     if(!check)
         return;
     
@@ -70,9 +70,12 @@
                                          if (error) {
                                             [self showDialog:@"The email address is already in use. Please choose a different email"];
                                             return;
+                                         }else{
+                                             [self setDisplayName:user];
+                                             [self saveImage:user];
+                                             [self performSegueWithIdentifier:@"login" sender:self];
                                          }
-                                        [self setDisplayName:user];
-                                 [self saveImage:user];
+                                 
     }];
     [self setWorking:YES];
    
@@ -123,6 +126,7 @@
     [self presentViewController:prompt animated:YES completion:nil];
 }
 
+//set display name of the user created
 - (void)setDisplayName:(FIRUser *)user {
     FIRUserProfileChangeRequest *changeRequest =
     [user profileChangeRequest];
@@ -136,6 +140,9 @@
     }];
 }
 
+- (IBAction)cancelPressed:(id)sender {
+    [self performSegueWithIdentifier:@"login" sender:self];
+}
 
 #pragma mark - IBActions
 
@@ -159,7 +166,7 @@
     
     self.imageView.image = self.originalImage;
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil]; //dismiss picker
 }
 //upload the user's image
 - (void) saveImage:(FIRUser *)user{
@@ -201,19 +208,5 @@ picker {
 }
 
 
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    //SignUpController *sc = (SignUpController *)segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"cancel"]){
-         [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else{
-        if([self isWorking] == YES){
-        [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }
-   
-}
 
 @end

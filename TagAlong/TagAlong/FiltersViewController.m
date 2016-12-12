@@ -49,7 +49,7 @@
         return _locations.count;
     return 0;
 }
-
+//to give colors to pickers text
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
    
 
