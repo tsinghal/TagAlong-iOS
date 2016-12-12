@@ -262,7 +262,7 @@
 - (void)signOut {
     FIRUser *user = [FIRAuth auth].currentUser;
     if (user) {
-        NSLog(@"Signed Out");
+        //NSLog(@"Signed Out");
     }
     
     FIRAuth *firebaseAuth = [FIRAuth auth];
@@ -271,6 +271,9 @@
     if (!status) {
         NSLog(@"Error signing out: %@", signOutError);
         return;
+    }
+    else{
+        NSLog(@"Signed Out");
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

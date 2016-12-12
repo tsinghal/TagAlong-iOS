@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.usernameField becomeFirstResponder];
-    _working = NO;
+    [self setWorking:NO];
 }
 
 
@@ -62,10 +62,12 @@
                          completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
                              if (error) {
                                  [self showDialog:@"Login Failed"];
+                                 [self setWorking:NO];
                                  return;
+                             }else{
+                                [self setWorking:YES];
+                                 
                              }
-                             [self setWorking:YES];
-                             //[self signedIn:user];
                              printf("success");
                          }];
 }
@@ -123,6 +125,7 @@
         if([self isWorking] == YES){
             _usernameField.text = @"";
             _passwordField.text = @"";
+            [self setWorking:false];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }else{

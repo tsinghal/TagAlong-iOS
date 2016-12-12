@@ -77,6 +77,7 @@
     return nil;
     
 }
+
 - (IBAction)backPressed:(id)sender {
     
     NSUInteger selectedtypeIndex = [_typePicker selectedRowInComponent:0];
@@ -87,6 +88,7 @@
     NSString *time = _times[selectedtimeIndex];
     NSString *location = _locations[selectedlocationIndex];
     
+    //send 3 picker values
     if (self.completionHandler){
         self.completionHandler(type, time, location);
     }
