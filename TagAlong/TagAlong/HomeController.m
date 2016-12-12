@@ -36,16 +36,18 @@
     //register table cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CustomTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([CustomTableViewCell class])];
     
+    //get reference to firebase database
     self.ref = [[FIRDatabase database] reference];
+    
     [self setSeg:NO];
     
-    
-    //FIRDatabaseReference *childRef = [[FIRDatabase database] referenceWithPath:@"users"];
-    
-    //read from firebase through model
-    self.userData = [UserDataModel sharedModel];
     _count = 5;
     _postCount = 0;
+    
+    
+    //READ FROM FIREBASE THROUGH SHARED USER DATA MODEL
+    self.userData = [UserDataModel sharedModel];
+    
     [super viewDidLoad];
     
     
@@ -67,25 +69,7 @@
     
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([CustomTableViewCell class]) forIndexPath:indexPath];
     
-    
-    /* Unpack message from Firebase DataSnapshot
-    FIRDataSnapshot *messageSnapshot = _users[indexPath.row];
-    NSDictionary<NSString *, NSString *> *message = messageSnapshot.value;
-    NSString *name = message[@"name"];
-    NSString *text = message[@"description"];
-    cell.cellName.text = [NSString stringWithFormat:@"%@", name];
-    cell.cellDescription.text = [NSString stringWithFormat:@"%@",text];
-    //cell.cellImage.image = [UIImage imageNamed: @"ic_account_circle"];
-    NSString *photoURL = message[MessageFieldsphotoURL];
-    if (photoURL) {
-        NSURL *URL = [NSURL URLWithString:photoURL];
-        if (URL) {
-            NSData *data = [NSData dataWithContentsOfURL:URL];
-            if (data) {
-                cell.imageView.image = [UIImage imageWithData:data];
-            }
-        }
-    }*/
+    //restructure data and look of cell
     
     NSMutableArray *firebaseUsers = [[NSMutableArray alloc] init];
     
@@ -114,7 +98,17 @@
             //NSString *tempType = [tempUser objectForKey:kType];
             //NSString *tempTime = [tempUser objectForKey:kTime];
             //NSString *tempLocation = [tempUser objectForKey:kLocation];
-            
+                /* //cell.cellImage.image = [UIImage imageNamed: @"ic_account_circle"];
+                 NSString *photoURL = message[MessageFieldsphotoURL];
+                 if (photoURL) {
+                 NSURL *URL = [NSURL URLWithString:photoURL];
+                 if (URL) {
+                 NSData *data = [NSData dataWithContentsOfURL:URL];
+                 if (data) {
+                 cell.imageView.image = [UIImage imageWithData:data];
+                 }
+                 }
+                 }*/
             }
              flag++;
         }
@@ -126,24 +120,80 @@
     return cell;
 }
 
+// to give more information about clicked cell
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSMutableArray *firebaseUsers = [[NSMutableArray alloc] init];
+    
+    [[_ref child:@"users"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        
+        [firebaseUsers addObject:snapshot];
+        
+        FIRDataSnapshot *userSnapshot = firebaseUsers[0];
+        NSDictionary<NSString *, NSString *> *database = userSnapshot.value;
+        
+        int flag = 0;
+        
+        for(NSString *key in [database allKeys]) {
+            
+            if(flag == indexPath.row){
+                NSDictionary<NSString *, NSString *> *tempUser = [database objectForKey:key];
+                
+                // Get user values
+                
+                NSString *tempName = [tempUser objectForKey:kName];
+                NSString *tempType = [tempUser objectForKey:kType];
+                NSString *tempTime = [tempUser objectForKey:kTime];
+                NSString *tempLocation = [tempUser objectForKey:kLocation];
+                
+                NSString *complete = [NSString stringWithFormat:@"%@'s %@", tempName,
+                                      @"Preferences"];
+                NSString *msg = [NSString stringWithFormat:@"Type: %@\r\n Time: %@\r\n Location: %@",tempType, tempTime, tempLocation];
+                
+                UIAlertController *prompt =
+                [UIAlertController alertControllerWithTitle: complete
+                                                    message: msg
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:@"OK"
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * _Nonnull action) {
+                                               [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+                                               
+                                           }];
+                [prompt addAction:okAction];
+                [self presentViewController:prompt animated:YES completion:nil];
+            }
+            flag++;
+        }
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 
+}
+- (void)showDialog:(NSString *)show {
+    UIAlertController *prompt =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:show
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * _Nonnull action) {
+                                   
+                               }];
+    [prompt addAction:okAction];
+    [self presentViewController:prompt animated:YES completion:nil];
+}
 
 - (IBAction)postPressed:(id)sender {
     _postCount++;               //number of times post button is pressed
     
-    if([self seg] == NO){
-        UIAlertController *prompt =
-        [UIAlertController alertControllerWithTitle:nil
-                                            message:@"Please select filters"
-                                     preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction * _Nonnull action) {
-                                       
-                                   }];
-        [prompt addAction:okAction];
-        [self presentViewController:prompt animated:YES completion:nil];
+    if([self seg] == NO){       //if filters haven't been chosen yet
+
+        [self showDialog:@"Please select filters"];
         return;
     }
     
@@ -178,6 +228,7 @@
     [[[[_ref child:@"users"] child:user.uid] child:@"type"] setValue:_usertype];
     [[[[_ref child:@"users"] child:user.uid] child:@"time"] setValue:_usertime];
     [[[[_ref child:@"users"] child:user.uid] child:@"location"] setValue:_userlocation];
+    
     _count++;
     if(_postCount > 2)
         _count--;
@@ -210,10 +261,11 @@
      
      if ([segue.identifier isEqualToString:@"logout"]) {
        [self signOut];
+         
      }else if ([segue.identifier isEqualToString:@"filter"]){
          
          [self setSeg:YES];
-         [self.postButton setEnabled:true];
+         
          FiltersViewController *fc = (FiltersViewController *)segue.destinationViewController;
          
          fc.completionHandler = ^(NSString *type, NSString *time, NSString *location){
@@ -229,8 +281,6 @@
              [self dismissViewControllerAnimated:YES completion:nil];
          };
         
-     }else if ([segue.identifier isEqualToString:@"notification"]){
-         
      }
  }
 

@@ -9,6 +9,8 @@
 #import "SignUpController.h"
 #import "ViewController.h"
 @import FirebaseAuth;
+@import FirebaseStorage;
+@import Firebase;
 
 @interface SignUpController () <UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -19,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, assign, getter=isWorking) BOOL working;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 
 @end
 
@@ -28,7 +31,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
      _working = NO;
+    [self configureStorage];
 }
+- (void)configureStorage {
+    NSString *storageUrl = [FIRApp defaultApp].options.storageBucket;
+    self.storageRef = [[FIRStorage storage] referenceForURL:[NSString stringWithFormat:@"gs://%@", storageUrl]];
+}
+
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
     
@@ -140,10 +149,15 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
+    NSURL *referenceURL = info[UIImagePickerControllerReferenceURL];
+    NSLog(@"%@", referenceURL);
+    
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     
     self.imageView.image = originalImage;
+
+    
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
