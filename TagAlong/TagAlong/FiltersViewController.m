@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _types = @[@"Workout", @"Jogging",@"Ping Pong", @"Football", @"Tennis"];
-    _times = @[@"Workout", @"Jogging",@"Ping Pong", @"Football", @"Badminton"];
+    _times = @[@"6:00 - 8:00", @"8:00 - 10:00", @"10:00 - 12:00", @"12:00 - 14:00", @"14:00 - 16:00", @"16:00 - 18:00", @"18:00 - 20:00", @"20:00 - 22:00", @"22:00 - 00:00"];
     _locations = @[@"Lyon Center", @"Track Field",@"Lorenzo Gym", @"Gateway Gym", @"Marks Stadium"];
     
 }

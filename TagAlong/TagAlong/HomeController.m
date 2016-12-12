@@ -9,6 +9,7 @@
 #import "HomeController.h"
 #import "FiltersViewController.h"
 #import "CustomTableViewCell.h"
+#import "UserDataModel.h"
 @import FirebaseAuth;
 @import FirebaseDatabase;
 
@@ -21,19 +22,32 @@
 @property(nonatomic,copy) NSString *usertime;
 @property(nonatomic,copy) NSString *usertype;
 @property(nonatomic,copy) NSString *userlocation;
+
+@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) NSInteger postCount;
+
+@property (nonatomic, strong) UserDataModel *userData;
 @end
 
 @implementation HomeController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
 
     //register table cell
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CustomTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([CustomTableViewCell class])];
- 
     
     self.ref = [[FIRDatabase database] reference];
     [self setSeg:NO];
+    
+    
+    //FIRDatabaseReference *childRef = [[FIRDatabase database] referenceWithPath:@"users"];
+    
+    //read from firebase through model
+    self.userData = [UserDataModel sharedModel];
+    _count = 5;
+    _postCount = 0;
+    [super viewDidLoad];
+    
     
 }
 
@@ -42,9 +56,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return [self.model numberOfFlashcards];
     //return number of users;
-    return 10;
+
+    return _count;
 }
 
 
@@ -73,12 +87,50 @@
         }
     }*/
     
+    NSMutableArray *firebaseUsers = [[NSMutableArray alloc] init];
+    
+    [[_ref child:@"users"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        
+        [firebaseUsers addObject:snapshot];
+        
+        FIRDataSnapshot *userSnapshot = firebaseUsers[0];
+        NSDictionary<NSString *, NSString *> *database = userSnapshot.value;
+        
+        int flag = 0;
+        
+        for(NSString *key in [database allKeys]) {
+            
+            if(flag == indexPath.row){
+            NSDictionary<NSString *, NSString *> *tempUser = [database objectForKey:key];
+            
+            // Get user values
+            
+            NSString *tempName = [tempUser objectForKey:kName];
+            NSString *tempDescription = [tempUser objectForKey:kDescription];
+            cell.cellName.text = tempName;
+            cell.cellDescription.text = tempDescription;
+            
+            //NSString *tempType = [tempUser objectForKey:kType];
+            //NSString *tempTime = [tempUser objectForKey:kTime];
+            //NSString *tempLocation = [tempUser objectForKey:kLocation];
+            
+            }
+             flag++;
+        }
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
+    
     return cell;
 }
 
 
+
 - (IBAction)postPressed:(id)sender {
-  
+    _postCount++;               //number of times post button is pressed
+    
     if([self seg] == NO){
         UIAlertController *prompt =
         [UIAlertController alertControllerWithTitle:nil
@@ -126,6 +178,10 @@
     [[[[_ref child:@"users"] child:user.uid] child:@"type"] setValue:_usertype];
     [[[[_ref child:@"users"] child:user.uid] child:@"time"] setValue:_usertime];
     [[[[_ref child:@"users"] child:user.uid] child:@"location"] setValue:_userlocation];
+    _count++;
+    if(_postCount > 2)
+        _count--;
+    [self.tableView reloadData];
     
 }
 
@@ -143,6 +199,7 @@
         NSLog(@"Error signing out: %@", signOutError);
         return;
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -167,7 +224,6 @@
                  _usertime = time;
                  _usertype = type;
                  _userlocation = location;
-                 
              }
              
              [self dismissViewControllerAnimated:YES completion:nil];

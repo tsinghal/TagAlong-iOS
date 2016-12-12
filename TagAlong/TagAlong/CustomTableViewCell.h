@@ -12,6 +12,4 @@
 @property (weak, nonatomic) IBOutlet UIImageView *cellImage;
 @property (weak, nonatomic) IBOutlet UILabel *cellName;
 @property (weak, nonatomic) IBOutlet UILabel *cellDescription;
-@property (weak, nonatomic) IBOutlet UIButton *cellAdd;
-
 @end

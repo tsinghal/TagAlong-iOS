@@ -15,10 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UITextField *numberField;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, assign, getter=isWorking) BOOL working;
 
 @end
 
@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+     _working = NO;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
@@ -59,6 +60,7 @@
                                          }
                                         [self setDisplayName:user];
     }];
+    [self setWorking:YES];
 }
 
 - (BOOL)checkName{
@@ -156,7 +158,15 @@ picker {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     //SignUpController *sc = (SignUpController *)segue.destinationViewController;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([segue.identifier isEqualToString:@"cancel"]){
+         [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+        if([self isWorking] == YES){
+        [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+   
 }
 
 @end

@@ -83,7 +83,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K8U-fG-DUg"/>
-                                    <segue destination="Vtn-Sb-zLc" kind="presentation" identifier="main" modalTransitionStyle="flipHorizontal" id="1Uv-L4-XEg"/>
+                                    <segue destination="Vtn-Sb-zLc" kind="presentation" identifier="main" id="1Uv-L4-XEg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jj-Gy-Tt9" userLabel="signUpButton">
@@ -150,7 +150,7 @@
                                     <navigationItem title="Physical Activity" id="KNJ-Zr-Fmx">
                                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="5vf-Zg-KB1" userLabel="signOutButton">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="logout" modalTransitionStyle="flipHorizontal" id="PxB-Em-m6D"/>
+                                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="logout" id="PxB-Em-m6D"/>
                                             </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
@@ -328,7 +328,7 @@
                                     <navigationItem title="Sign Up" id="1nW-Gh-dUu">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="k1G-qs-Fgw" userLabel="cancelButton">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="login" modalTransitionStyle="flipHorizontal" id="7fo-Wy-aBv"/>
+                                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="cancel" id="7fo-Wy-aBv"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -385,23 +385,6 @@
                                     <outlet property="delegate" destination="w5L-BV-6Ip" id="lkl-08-vx4"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="213xx23xx4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w3F-Om-FhZ" userLabel="numberField">
-                                <rect key="frame" x="63" y="393" width="248" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                <connections>
-                                    <outlet property="delegate" destination="w5L-BV-6Ip" id="DOo-Ry-WTu"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAO-tL-Kad">
-                                <rect key="frame" x="117" y="359" width="141" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOt-hD-Neh" userLabel="createButton">
                                 <rect key="frame" x="63" y="572" width="248" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -412,10 +395,16 @@
                                 </state>
                                 <connections>
                                     <action selector="createPressed:" destination="w5L-BV-6Ip" eventType="touchUpInside" id="CZ4-zk-zJ0"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="create" id="g8l-wE-Nzd"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="TmM-qY-uED">
+                                <rect key="frame" x="204" y="410" width="107" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPm-EU-hvC" userLabel="selectButton">
-                                <rect key="frame" x="63" y="474" width="125" height="48"/>
+                                <rect key="frame" x="63" y="430" width="125" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -427,11 +416,6 @@
                                     <action selector="selectPressed:" destination="w5L-BV-6Ip" eventType="touchUpInside" id="E8G-v4-xSu"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="TmM-qY-uED">
-                                <rect key="frame" x="204" y="454" width="107" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -440,7 +424,6 @@
                         <outlet property="emailField" destination="Sml-mo-OWv" id="gII-y0-lhA"/>
                         <outlet property="imageView" destination="TmM-qY-uED" id="rGT-T9-jrl"/>
                         <outlet property="nameField" destination="bg5-HS-SeZ" id="Jbd-MK-Udu"/>
-                        <outlet property="numberField" destination="w3F-Om-FhZ" id="b98-2W-rZ7"/>
                         <outlet property="passwordField" destination="DIU-tm-fDq" id="2C7-R6-Mwi"/>
                         <outlet property="selectButton" destination="tPm-EU-hvC" id="sLH-D7-MUq"/>
                     </connections>
@@ -458,6 +441,6 @@
         <image name="person" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7fo-Wy-aBv"/>
+        <segue reference="g8l-wE-Nzd"/>
     </inferredMetricsTieBreakers>
 </document>
