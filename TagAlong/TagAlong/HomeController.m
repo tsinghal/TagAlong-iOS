@@ -12,6 +12,8 @@
 #import "UserDataModel.h"
 @import FirebaseAuth;
 @import FirebaseDatabase;
+@import FirebaseStorage;
+@import Firebase;
 
 @interface HomeController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +29,7 @@
 @property (nonatomic, assign) NSInteger postCount;
 
 @property (nonatomic, strong) UserDataModel *userData;
+@property (strong, nonatomic) FIRStorageReference *storageRef;
 @end
 
 @implementation HomeController
@@ -48,9 +51,16 @@
     //READ FROM FIREBASE THROUGH SHARED USER DATA MODEL
     self.userData = [UserDataModel sharedModel];
     
+    //firebase storage
+    [self configureStorage];
+    
     [super viewDidLoad];
     
     
+}
+- (void)configureStorage {
+    NSString *storageUrl = [FIRApp defaultApp].options.storageBucket;
+    self.storageRef = [[FIRStorage storage] referenceForURL:[NSString stringWithFormat:@"gs://%@", storageUrl]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -59,7 +69,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //return number of users;
-
     return _count;
 }
 
@@ -95,20 +104,21 @@
             cell.cellName.text = tempName;
             cell.cellDescription.text = tempDescription;
             
-            //NSString *tempType = [tempUser objectForKey:kType];
-            //NSString *tempTime = [tempUser objectForKey:kTime];
-            //NSString *tempLocation = [tempUser objectForKey:kLocation];
-                /* //cell.cellImage.image = [UIImage imageNamed: @"ic_account_circle"];
-                 NSString *photoURL = message[MessageFieldsphotoURL];
-                 if (photoURL) {
-                 NSURL *URL = [NSURL URLWithString:photoURL];
-                 if (URL) {
-                 NSData *data = [NSData dataWithContentsOfURL:URL];
-                 if (data) {
-                 cell.imageView.image = [UIImage imageWithData:data];
-                 }
-                 }
-                 }*/
+            //downloading image from Firebase
+            FIRStorageReference *imageRef = [self.storageRef child:key];
+            [imageRef dataWithMaxSize:2.8 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        [self showDialog:@"Image size was too big"];
+                    } else {
+                        // image returned and resized
+                       UIImage *tempImage =[UIImage imageWithData:data];
+                        CGSize size=CGSizeMake(75, 75);
+                        UIImage *temp = [self imageWithImage:tempImage scaledToSize:size];
+                        cell.imageView.image =  temp;
+                        
+                    }
+                }];
             }
              flag++;
         }
@@ -118,6 +128,16 @@
     }];
     
     return cell;
+}
+
+//credits: stackoverflow for image scaling
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 // to give more information about clicked cell

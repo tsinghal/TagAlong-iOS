@@ -365,13 +365,8 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="create" id="g8l-wE-Nzd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="TmM-qY-uED">
-                                <rect key="frame" x="204" y="410" width="107" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPm-EU-hvC" userLabel="selectButton">
-                                <rect key="frame" x="63" y="430" width="125" height="48"/>
+                                <rect key="frame" x="125" y="367" width="125" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -383,6 +378,11 @@
                                     <action selector="selectPressed:" destination="w5L-BV-6Ip" eventType="touchUpInside" id="E8G-v4-xSu"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="TmM-qY-uED">
+                                <rect key="frame" x="118" y="435" width="140" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -407,6 +407,6 @@
         <image name="person" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PxB-Em-m6D"/>
+        <segue reference="g8l-wE-Nzd"/>
     </inferredMetricsTieBreakers>
 </document>

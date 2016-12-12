@@ -23,6 +23,8 @@
 @property (nonatomic, assign, getter=isWorking) BOOL working;
 @property (strong, nonatomic) FIRStorageReference *storageRef;
 
+@property (strong, nonatomic) UIImage *originalImage;
+
 @end
 
 @implementation SignUpController
@@ -68,8 +70,10 @@
                                             return;
                                          }
                                         [self setDisplayName:user];
+                                 [self saveImage:user];
     }];
     [self setWorking:YES];
+   
 }
 
 - (BOOL)checkName{
@@ -149,17 +153,44 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
-    NSURL *referenceURL = info[UIImagePickerControllerReferenceURL];
-    NSLog(@"%@", referenceURL);
+    self.originalImage = info[UIImagePickerControllerOriginalImage];
     
-    UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    
-    self.imageView.image = originalImage;
-
-    
+    self.imageView.image = self.originalImage;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+//upload the user's image
+- (void) saveImage:(FIRUser *)user{
+    
+    if(self.originalImage != NULL){
+        
+        NSData *imageData = UIImageJPEGRepresentation(self.originalImage, 0.8);
+        
+        // Create a reference to the file that has to be uploaded, save it by user's id name
+        FIRStorageReference *imageRef = [_storageRef child:user.uid];
+        
+        // Create file metadata including the content type
+        FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+        metadata.contentType = @"image/jpeg";
+        
+        // Upload data and metadata
+        FIRStorageUploadTask *uploadTask = [imageRef putData:imageData metadata:metadata];
+        
+    }else{
+        UIImage *temp = [UIImage imageNamed:@"person"];
+        NSData *imageData = UIImageJPEGRepresentation(temp, 0.8);
+        
+        // Create a reference to the file that has to be uploaded, save it by user's id name
+        FIRStorageReference *imageRef = [_storageRef child:user.uid];
+        
+        // Create file metadata including the content type
+        FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+        metadata.contentType = @"image/jpeg";
+        
+        // Upload data and metadata
+        FIRStorageUploadTask *uploadTask = [imageRef putData:imageData metadata:metadata];
+        
+    }
 }
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *)
